@@ -169,7 +169,7 @@ topLight.position.set(0, 8, 2);
 scene.add(topLight);
 
   const { colorTex, bumpTex } = buildBasketballTextures(THREE);
-  const ballGeo = new THREE.SphereGeometry(2, 128, 128);
+ const ballGeo = new THREE.SphereGeometry(1.75, 128, 128);
  const ballMat = new THREE.MeshPhysicalMaterial({
     map: colorTex,
     bumpMap: bumpTex,

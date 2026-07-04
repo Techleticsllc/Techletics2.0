@@ -8,7 +8,8 @@ try {
   const { EffectComposer } = await import("three/addons/postprocessing/EffectComposer.js");
   const { RenderPass } = await import("three/addons/postprocessing/RenderPass.js");
   const { UnrealBloomPass } = await import("three/addons/postprocessing/UnrealBloomPass.js");
-  initHeroScene(THREE, EffectComposer, RenderPass, UnrealBloomPass);
+ initHeroScene(THREE, EffectComposer, RenderPass, UnrealBloomPass, 'hero-canvas');
+initHeroScene(THREE, EffectComposer, RenderPass, UnrealBloomPass, 'feature-canvas');
 } catch (err) {
   console.warn("Techletics: 3D hero scene unavailable, showing CSS fallback.", err);
 }
@@ -120,7 +121,7 @@ function buildBasketballTextures(THREE) {
 }
 
 function initHeroScene(THREE, EffectComposer, RenderPass, UnrealBloomPass) {
-  const canvas = document.getElementById("hero-canvas");
+ const canvas = document.getElementById(canvasId);
   if (!canvas) return;
 
   const { colorTex, bumpTex } = buildBasketballTextures(THREE);

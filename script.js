@@ -172,16 +172,17 @@ scene.add(topLight);
 
   const { colorTex, bumpTex } = buildBasketballTextures(THREE);
   const ballGeo = new THREE.SphereGeometry(2, 128, 128);
-  const ballMat = new THREE.MeshPhysicalMaterial({
+ const ballMat = new THREE.MeshPhysicalMaterial({
     map: colorTex,
     bumpMap: bumpTex,
-    bumpScale: 0.035,
+    bumpScale: 0.05,            // 1. INCREASE THIS from 0.035 to 0.05 (Makes the pebbling deeper)
     roughness: 0.85,
     metalness: 0.05,
     clearcoat: 0.0,
     clearcoatRoughness: 0.6,
     envMapIntensity: 1.1,
-  });
+    color: 0xb04a1d             // 2. ADD THIS LINE (Forces the base color to traditional basketball orange)
+});
   const ball = new THREE.Mesh(ballGeo, ballMat);
   scene.add(ball);
 

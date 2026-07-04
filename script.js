@@ -169,7 +169,12 @@ topLight.position.set(0, 8, 2);
 scene.add(topLight);
 
   const { colorTex, bumpTex } = buildBasketballTextures(THREE);
- const ballGeo = new THREE.SphereGeometry(1.75, 128, 128);
+
+// 1. ADD THIS NEW LINE (Shares your blue textures with Section 2)
+window.sharedBasketballTextures = { colorTex, bumpTex };
+
+// 2. CHANGE THE '2' TO '1.75' (Shrinks the hero ball)
+const ballGeo = new THREE.SphereGeometry(1.75, 128, 128);
  const ballMat = new THREE.MeshPhysicalMaterial({
     map: colorTex,
     bumpMap: bumpTex,

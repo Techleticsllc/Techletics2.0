@@ -27,15 +27,11 @@ function buildBasketballTextures(THREE) {
     const ctx = canvas.getContext("2d");
     const w = canvas.width, h = canvas.height;
 
-   // 1. Change the base color to a deep, premium dark blue leather
-ctx.fillStyle = "#0d1b2a"; 
-ctx.fillRect(0, 0, w, h);
-
-// ... keep your loops the same, but update the pebble highlights down inside the loop:
-ctx.fillStyle = "rgba(30, 144, 255, 0.08)"; // Subtle bright blue mist for the leather pebble tops
+    // 1. Premium Midnight Blue Base Color
+    ctx.fillStyle = "#0d1b2a"; 
+    ctx.fillRect(0, 0, w, h);
 
     // 2. Heavy Leather Pebbling / Grain
-    // Instead of random dots, we create a dense, structured pebbled pattern
     const pebbleRadius = 1.2;
     const spacing = 4.5;
     
@@ -46,23 +42,23 @@ ctx.fillStyle = "rgba(30, 144, 255, 0.08)"; // Subtle bright blue mist for the l
             const px = x + shiftX + (Math.random() - 0.5) * 0.8;
             const py = y + (Math.random() - 0.5) * 0.8;
             
-            // Subtle dark shadow underneath the pebble
-            ctx.fillStyle = "rgba(40, 15, 5, 0.25)";
+            // Dark pocket underneath the pebble
+            ctx.fillStyle = "rgba(5, 10, 20, 0.4)";
             ctx.beginPath();
             ctx.arc(px, py + 0.5, pebbleRadius, 0, Math.PI * 2);
             ctx.fill();
 
-            // Highlight on top of the pebble to give it depth
-            ctx.fillStyle = "rgba(255, 140, 90, 0.15)";
+            // Clear blue highlight on top of the pebble
+            ctx.fillStyle = "rgba(30, 144, 255, 0.12)"; 
             ctx.beginPath();
             ctx.arc(px, py, pebbleRadius, 0, Math.PI * 2);
             ctx.fill();
         }
     }
 
-    // 3. Black Rubber Seams (Replacing the glowing orange ones)
+    // 3. Crisp Black Rubber Seams
     ctx.strokeStyle = "#1a1a1a"; 
-    ctx.lineWidth = 12; // Slightly thicker for traditional seams
+    ctx.lineWidth = 12; 
     ctx.lineCap = "round";
 
     function drawVerticalSeam(offsetX, amplitude) {
@@ -100,14 +96,14 @@ ctx.fillStyle = "rgba(30, 144, 255, 0.08)"; // Subtle bright blue mist for the l
     archSeam(h * 0.25, 1);
     archSeam(h * 0.75, -1);
 
-    // 4. Clean, High-Contrast Branding Text
+    // 4. Branding Text
     ctx.save();
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
     const cx = w / 2, cy = h / 2;
 
     ctx.font = "700 84px 'Space Grotesk', sans-serif";
-    ctx.fillStyle = "#111111"; // Crisp black foil stamp effect
+    ctx.fillStyle = "#111111"; 
     ctx.fillText("TECHLETICS", cx, cy - 46);
 
     ctx.font = "500 34px 'Inter', sans-serif";
@@ -121,7 +117,6 @@ ctx.fillStyle = "rgba(30, 144, 255, 0.08)"; // Subtle bright blue mist for the l
     colorTex.wrapS = THREE.RepeatWrapping;
     colorTex.anisotropy = 8;
 
-    // The bump map uses this pattern to generate actual 3D texture depth
     const bumpCanvas = document.createElement("canvas");
     bumpCanvas.width = w;
     bumpCanvas.height = h;

@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Techletics — Your Game, Upgraded</title>
+<meta name="description" content="Techletics builds the world's most advanced smart basketball — real-time performance data for every shot, dribble, and spin." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Inter:wght@300..800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css" />
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body>
+
+<!-- ambient cursor glow -->
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<!-- grain overlay -->
+<div class="grain"></div>
+
+<!-- ================= NAVBAR ================= -->
+<header class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="#home" class="logo">
+      <span class="logo-mark">
+        <span class="logo-dot"></span>
+      </span>
+      <span class="logo-text">TECHLETICS</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#home" class="nav-link">Home</a>
+      <a href="#features" class="nav-link">Features</a>
+      <a href="#technology" class="nav-link">Technology</a>
+      <a href="#app" class="nav-link">App</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+    <button class="nav-cta magnetic">
+      <span>Get Early Access</span>
+    </button>
+    <button class="nav-burger" id="navBurger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- mobile menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#home">Home</a>
+  <a href="#features">Features</a>
+  <a href="#technology">Technology</a>
+  <a href="#app">App</a>
+  <a href="#about">About</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <div class="hero-fallback-orb"></div>
+    <canvas id="hero-canvas"></canvas>
+    <div class="hero-fog"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-vignette"></div>
+  </div>
+
+  <div class="hero-content">
+    <div class="eyebrow reveal-up">
+      <span class="eyebrow-pulse"></span>
+      NOW ENTERING BETA
+    </div>
+    <h1 class="hero-title">
+      <span class="title-line reveal-up">The Future of</span>
+      <span class="title-line reveal-up">Basketball Starts</span>
+      <span class="title-line reveal-up gradient-text">Here.</span>
+    </h1>
+    <p class="hero-sub reveal-up">
+      Transform every shot, dribble, spin and workout into real-time performance data.
+    </p>
+    <div class="hero-actions reveal-up">
+      <button class="btn btn-primary magnetic">
+        <span>Get Early Access</span>
+        <i class="btn-glow"></i>
+      </button>
+      <button class="btn btn-ghost magnetic">
+        <span class="play-ico">▶</span>
+        <span>Watch Demo</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="scroll-cue">
+    <span>Scroll</span>
+    <div class="scroll-line"><i></i></div>
+  </div>
+</section>
+
+<!-- ================= FEATURES ================= -->
+<section class="section features" id="features">
+  <div class="section-head">
+    <span class="section-tag">01 — Capabilities</span>
+    <h2 class="section-title reveal-up">Every rep,<br><span class="gradient-text">quantified.</span></h2>
+    <p class="section-desc reveal-up">Nine sensors. One ball. Infinite insight.</p>
+  </div>
+
+  <div class="feature-grid">
+    <div class="feature-card tilt-card">
+      <div class="feature-icon">🏀</div>
+      <h3>Smart Basketball</h3>
+      <p>A regulation ball engineered with embedded sensors — feels, bounces, and grips exactly like the real thing.</p>
+    </div>
+    <div class="feature-card tilt-card">
+      <div class="feature-icon">📱</div>
+      <h3>Mobile App</h3>
+      <p>Every session syncs instantly to a companion app built for athletes who obsess over the details.</p>
+    </div>
+    <div class="feature-card tilt-card">
+      <div class="feature-icon">⚡</div>
+      <h3>Live Analytics</h3>
+      <p>Watch performance metrics update in real time, on court, between reps.</p>
+    </div>
+    <div class="feature-card tilt-card">
+      <div class="feature-icon">📊</div>
+      <h3>Shot Tracking</h3>
+      <p>Arc, release point, and make/miss — logged automatically, shot after shot.</p>
+    </div>
+    <div class="feature-card tilt-card">
+      <div class="feature-icon">🎯</div>
+      <h3>Dribble Detection</h3>
+      <p>Crossover speed and control patterns, broken down move by move.</p>
+    </div>
+    <div class="feature-card tilt-card">
+      <div class="feature-icon">🧠</div>
+      <h3>AI Coaching</h3>
+      <p>Personalized drills generated from your own performance history.</p>
+    </div>
+    <div class="feature-card tilt-card">
+      <div class="feature-icon">🌀</div>
+      <h3>Spin Rate</h3>
+      <p>Backspin and rotation measured to the RPM, for the purest shooting form.</p>
+    </div>
+    <div class="feature-card tilt-card">
+      <div class="feature-icon">💥</div>
+      <h3>Impact Force</h3>
+      <p>Every dunk, pass, and rebound measured for force and intensity.</p>
+    </div>
+    <div class="feature-card tilt-card">
+      <div class="feature-icon">📈</div>
+      <h3>Performance History</h3>
+      <p>Long-term trends that show exactly how much stronger you've become.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TECHNOLOGY ================= -->
+<section class="section technology" id="technology">
+  <div class="section-head">
+    <span class="section-tag">02 — Engineering</span>
+    <h2 class="section-title reveal-up">Built from the<br><span class="gradient-text">inside out.</span></h2>
+    <p class="section-desc reveal-up">Nine components. Zero compromises.</p>
+  </div>
+
+  <div class="tech-wrap">
+    <div class="tech-visual" id="techVisual">
+      <div class="tech-ball-core">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="ballShade" cx="35%" cy="30%" r="75%">
+              <stop offset="0%" stop-color="#6fb8ff"/>
+              <stop offset="45%" stop-color="#1E90FF"/>
+              <stop offset="100%" stop-color="#0a3d78"/>
+            </radialGradient>
+            <radialGradient id="ballShine" cx="32%" cy="26%" r="30%">
+              <stop offset="0%" stop-color="#ffffff" stop-opacity="0.55"/>
+              <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <circle cx="100" cy="100" r="96" fill="url(#ballShade)"/>
+          <g fill="none" stroke="#FF6A00" stroke-width="4.5" stroke-linecap="round" opacity="0.92">
+            <path d="M100,4 C60,40 60,160 100,196"/>
+            <path d="M100,4 C140,40 140,160 100,196"/>
+            <path d="M4,100 L196,100"/>
+            <path d="M14,58 C60,80 140,80 186,58"/>
+            <path d="M14,142 C60,120 140,120 186,142"/>
+          </g>
+          <circle cx="100" cy="100" r="96" fill="url(#ballShine)"/>
+        </svg>
+      </div>
+      <div class="tech-orbit orbit-1"></div>
+      <div class="tech-orbit orbit-2"></div>
+      <div class="tech-orbit orbit-3"></div>
+
+      <div class="tech-node" data-node="1" style="--x: -220px; --y: -160px;">
+        <span class="node-dot"></span>
+      </div>
+      <div class="tech-node" data-node="2" style="--x: 210px; --y: -190px;">
+        <span class="node-dot"></span>
+      </div>
+      <div class="tech-node" data-node="3" style="--x: -260px; --y: 40px;">
+        <span class="node-dot"></span>
+      </div>
+      <div class="tech-node" data-node="4" style="--x: 260px; --y: 30px;">
+        <span class="node-dot"></span>
+      </div>
+      <div class="tech-node" data-node="5" style="--x: -180px; --y: 210px;">
+        <span class="node-dot"></span>
+      </div>
+      <div class="tech-node" data-node="6" style="--x: 190px; --y: 220px;">
+        <span class="node-dot"></span>
+      </div>
+      <div class="tech-node" data-node="7" style="--x: 0px; --y: -260px;">
+        <span class="node-dot"></span>
+      </div>
+    </div>
+
+    <div class="tech-list">
+      <div class="tech-item" data-node="1">
+        <span class="tech-index">01</span>
+        <div><h4>BLE Chip</h4><p>Low-energy wireless streaming to your device, under 50ms latency.</p></div>
+      </div>
+      <div class="tech-item" data-node="2">
+        <span class="tech-index">02</span>
+        <div><h4>Accelerometer</h4><p>Tri-axis motion capture at 1,000 samples per second.</p></div>
+      </div>
+      <div class="tech-item" data-node="3">
+        <span class="tech-index">03</span>
+        <div><h4>Gyroscope</h4><p>Precision rotation sensing for true spin-rate accuracy.</p></div>
+      </div>
+      <div class="tech-item" data-node="4">
+        <span class="tech-index">04</span>
+        <div><h4>Pressure Sensors</h4><p>Distributed across the shell to read grip and impact force.</p></div>
+      </div>
+      <div class="tech-item" data-node="5">
+        <span class="tech-index">05</span>
+        <div><h4>Battery</h4><p>30-day standby, engineered to survive full-court abuse.</p></div>
+      </div>
+      <div class="tech-item" data-node="6">
+        <span class="tech-index">06</span>
+        <div><h4>PCB</h4><p>A custom flexible board, molded invisibly into the bladder.</p></div>
+      </div>
+      <div class="tech-item" data-node="7">
+        <span class="tech-index">07</span>
+        <div><h4>Wireless Charging</h4><p>Drop it on the dock. No ports, no cables, no excuses.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= APP ================= -->
+<section class="section app" id="app">
+  <div class="app-wrap">
+    <div class="app-copy">
+      <span class="section-tag">03 — Companion App</span>
+      <h2 class="section-title reveal-up">Your stats,<br><span class="gradient-text">in your pocket.</span></h2>
+      <p class="section-desc reveal-up">Every session lands in a dashboard built to look as good as it feels to use.</p>
+      <ul class="app-points">
+        <li class="reveal-up"><span>Live shot counter</span></li>
+        <li class="reveal-up"><span>Spin RPM &amp; release speed</span></li>
+        <li class="reveal-up"><span>Workout summaries &amp; calories</span></li>
+        <li class="reveal-up"><span>Heat maps &amp; trend graphs</span></li>
+      </ul>
+    </div>
+
+    <div class="phone-stage">
+      <div class="phone-mock" id="phoneMock">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="app-topbar">
+            <span>Today's Session</span>
+            <span class="app-dot"></span>
+          </div>
+          <div class="app-stat-row">
+            <div class="app-stat">
+              <span class="app-stat-num" data-count="248">248</span>
+              <span class="app-stat-label">Shots</span>
+            </div>
+            <div class="app-stat">
+              <span class="app-stat-num" data-count="182">182</span>
+              <span class="app-stat-label">RPM</span>
+            </div>
+            <div class="app-stat">
+              <span class="app-stat-num" data-count="21">21</span>
+              <span class="app-stat-label">MPH</span>
+            </div>
+          </div>
+          <div class="app-graph">
+            <svg viewBox="0 0 300 100" preserveAspectRatio="none">
+              <polyline class="graph-line" points="0,80 30,60 60,68 90,40 120,50 150,20 180,35 210,15 240,28 270,10 300,18" />
+            </svg>
+          </div>
+          <div class="app-heatmap">
+            <span class="hm-label">Shot Heat Map</span>
+            <div class="hm-grid" id="hmGrid">
+              <span></span><span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+          <div class="app-calorie">
+            <span>Calories Burned</span>
+            <strong>612 kcal</strong>
+          </div>
+        </div>
+      </div>
+      <div class="phone-glow"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HOW IT WORKS ================= -->
+<section class="section how" id="how">
+  <div class="section-head">
+    <span class="section-tag">04 — Process</span>
+    <h2 class="section-title reveal-up">From court to<br><span class="gradient-text">clarity.</span></h2>
+  </div>
+
+  <div class="how-track">
+    <div class="how-step reveal-up">
+      <span class="how-num">01</span>
+      <h3>Play.</h3>
+      <p>Pick up the ball. That's the entire setup.</p>
+    </div>
+    <div class="how-connector"><i></i></div>
+    <div class="how-step reveal-up">
+      <span class="how-num">02</span>
+      <h3>Capture.</h3>
+      <p>Every movement is sensed, sampled, and streamed.</p>
+    </div>
+    <div class="how-connector"><i></i></div>
+    <div class="how-step reveal-up">
+      <span class="how-num">03</span>
+      <h3>Analyze.</h3>
+      <p>The app turns raw motion into performance insight.</p>
+    </div>
+    <div class="how-connector"><i></i></div>
+    <div class="how-step reveal-up">
+      <span class="how-num">04</span>
+      <h3>Improve.</h3>
+      <p>Become a measurably better athlete, session by session.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STATS ================= -->
+<section class="section stats" id="stats">
+  <div class="stats-grid">
+    <div class="stat-card reveal-up">
+      <span class="stat-num" data-count="1000" data-suffix="+">1000+</span>
+      <span class="stat-label">Shots Tracked</span>
+    </div>
+    <div class="stat-card reveal-up">
+      <span class="stat-num" data-count="50" data-suffix="ms">50ms</span>
+      <span class="stat-label">Response Time</span>
+    </div>
+    <div class="stat-card reveal-up">
+      <span class="stat-num" data-count="99.9" data-decimal="1" data-suffix="%">99.9%</span>
+      <span class="stat-label">Accuracy</span>
+    </div>
+    <div class="stat-card reveal-up">
+      <span class="stat-num" data-static="24/7">24/7</span>
+      <span class="stat-label">Performance Tracking</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TESTIMONIALS ================= -->
+<section class="section testimonials" id="testimonials">
+  <div class="section-head">
+    <span class="section-tag">05 — Athletes</span>
+    <h2 class="section-title reveal-up">Trusted on<br><span class="gradient-text">every court.</span></h2>
+  </div>
+
+  <div class="carousel" id="carousel">
+    <div class="carousel-track" id="carouselTrack">
+      <div class="testimonial-card">
+        <p>"I can finally see the numbers behind my shot instead of guessing. The spin data alone changed my form."</p>
+        <div class="testimonial-author"><strong>Jordan M.</strong><span>NCAA Guard</span></div>
+      </div>
+      <div class="testimonial-card">
+        <p>"It disappears into the ball. You forget it's even there until you check the app after practice."</p>
+        <div class="testimonial-author"><strong>Amara K.</strong><span>Pro Trainer</span></div>
+      </div>
+      <div class="testimonial-card">
+        <p>"The heat maps showed me exactly where my efficiency drops. That's three weeks I'll never get back guessing."</p>
+        <div class="testimonial-author"><strong>Diego R.</strong><span>High School Coach</span></div>
+      </div>
+      <div class="testimonial-card">
+        <p>"Feels, weighs, and bounces like my old ball. I just happen to know my release speed now."</p>
+        <div class="testimonial-author"><strong>Priya S.</strong><span>Club Athlete</span></div>
+      </div>
+    </div>
+    <div class="carousel-dots" id="carouselDots"></div>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="section cta-section" id="contact">
+  <canvas id="cta-canvas"></canvas>
+  <div class="cta-content">
+    <h2 class="cta-title reveal-up">Ready to Upgrade<br><span class="gradient-text">Your Game?</span></h2>
+    <p class="cta-sub reveal-up">Join the waitlist and be first to train with Techletics.</p>
+    <div class="cta-form reveal-up">
+      <input type="email" placeholder="Enter your email" class="cta-input" />
+      <button class="btn btn-primary magnetic">
+        <span>Join the Waitlist</span>
+        <i class="btn-glow"></i>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer" id="about">
+  <div class="footer-top">
+    <a href="#home" class="logo">
+      <span class="logo-mark"><span class="logo-dot"></span></span>
+      <span class="logo-text">TECHLETICS</span>
+    </a>
+    <div class="footer-newsletter">
+      <span>Get product updates &amp; drop alerts.</span>
+      <div class="footer-input-row">
+        <input type="email" placeholder="you@email.com" />
+        <button class="btn btn-ghost small">Subscribe</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-cols">
+    <div class="footer-col">
+      <h5>Product</h5>
+      <a href="#features">Features</a>
+      <a href="#technology">Technology</a>
+      <a href="#app">App</a>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <a href="#about">About</a>
+      <a href="#testimonials">Athletes</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h5>Follow</h5>
+      <div class="social-row">
+        <a href="#" aria-label="Instagram">◎</a>
+        <a href="#" aria-label="X">✕</a>
+        <a href="#" aria-label="YouTube">▶</a>
+        <a href="#" aria-label="TikTok">♪</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>&copy; 2026 Techletics, Inc. All rights reserved.</span>
+    <span>Your Game, Upgraded.</span>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<!-- interactions.js is a classic script: it runs independently of the 3D hero,
+     so navbar, reveals, counters, tech list, phone tilt, carousel and CTA
+     particles all work even if the WebGL/Three.js module below fails to load. -->
+<script src="interactions.js"></script>
+<script type="module" src="script.js"></script>
+</body>
+</html>

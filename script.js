@@ -152,6 +152,10 @@ function initHeroScene(THREE, EffectComposer, RenderPass, UnrealBloomPass) {
   bounceLight.position.set(0, -4, 3);
   scene.add(bounceLight);
 
+   const topLight = new THREE.DirectionalLight(0xffffff, 2.5);
+topLight.position.set(0, 8, 2);
+scene.add(topLight);
+
   const { colorTex, bumpTex } = buildBasketballTextures(THREE);
   const ballGeo = new THREE.SphereGeometry(2, 128, 128);
   const ballMat = new THREE.MeshPhysicalMaterial({

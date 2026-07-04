@@ -181,7 +181,6 @@ scene.add(topLight);
     clearcoat: 0.0,
     clearcoatRoughness: 0.6,
     envMapIntensity: 1.1,
-    color: 0xb04a1d             // 2. ADD THIS LINE (Forces the base color to traditional basketball orange)
 });
   const ball = new THREE.Mesh(ballGeo, ballMat);
   scene.add(ball);

@@ -148,10 +148,6 @@ function initHeroScene(THREE, EffectComposer, RenderPass, UnrealBloomPass) {
   rimLight.position.set(4, -2, -3);
   scene.add(rimLight);
 
-  const fillLight = new THREE.PointLight(0x1e90ff, 30, 20, 2);
-  fillLight.position.set(3, 3, -4);
-  scene.add(fillLight);
-
   const bounceLight = new THREE.PointLight(0xffffff, 12, 15);
   bounceLight.position.set(0, -4, 3);
   scene.add(bounceLight);

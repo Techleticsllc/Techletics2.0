@@ -20,106 +20,120 @@ try {
 }
 
 function buildBasketballTextures(THREE) {
-  const size = 2048;
-  const canvas = document.createElement("canvas");
-  canvas.width = size;
-  canvas.height = 1024;
-  const ctx = canvas.getContext("2d");
-  const w = canvas.width, h = canvas.height;
+    const size = 2048;
+    const canvas = document.createElement("canvas");
+    canvas.width = size;
+    canvas.height = 1024;
+    const ctx = canvas.getContext("2d");
+    const w = canvas.width, h = canvas.height;
 
-  const grad = ctx.createLinearGradient(0, 0, 0, h);
-  grad.addColorStop(0, "#0e4f96");
-  grad.addColorStop(0.5, "#1E90FF");
-  grad.addColorStop(1, "#0e4f96");
-  ctx.fillStyle = grad;
-  ctx.fillRect(0, 0, w, h);
+    // 1. Classic Leather Base Color
+    ctx.fillStyle = "#b04a1d"; // Traditional deep basketball orange/brown
+    ctx.fillRect(0, 0, w, h);
 
-  for (let i = 0; i < 60000; i++) {
-    const x = Math.random() * w, y = Math.random() * h;
-    const r = Math.random() * 1.4 + 0.3;
-    ctx.fillStyle = Math.random() > 0.5 ? "rgba(0,10,30,0.10)" : "rgba(255,255,255,0.06)";
-    ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill();
-  }
+    // 2. Heavy Leather Pebbling / Grain
+    // Instead of random dots, we create a dense, structured pebbled pattern
+    const pebbleRadius = 1.2;
+    const spacing = 4.5;
+    
+    for (let x = 0; x < w; x += spacing) {
+        for (let y = 0; y < h; y += spacing) {
+            // Shift every other row slightly for a natural, staggered leather look
+            const shiftX = (Math.floor(y / spacing) % 2) * (spacing / 2);
+            const px = x + shiftX + (Math.random() - 0.5) * 0.8;
+            const py = y + (Math.random() - 0.5) * 0.8;
+            
+            // Subtle dark shadow underneath the pebble
+            ctx.fillStyle = "rgba(40, 15, 5, 0.25)";
+            ctx.beginPath();
+            ctx.arc(px, py + 0.5, pebbleRadius, 0, Math.PI * 2);
+            ctx.fill();
 
-  ctx.strokeStyle = "#FF6A00";
-  ctx.lineWidth = 9;
-  ctx.shadowColor = "rgba(255,106,0,0.65)";
-  ctx.shadowBlur = 14;
-  ctx.lineCap = "round";
-
-  function drawVerticalSeam(offsetX, amplitude) {
-    ctx.beginPath();
-    for (let y = 0; y <= h; y += 4) {
-      const t = y / h;
-      const x = offsetX + Math.sin(t * Math.PI) * amplitude;
-      if (y === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+            // Highlight on top of the pebble to give it depth
+            ctx.fillStyle = "rgba(255, 140, 90, 0.15)";
+            ctx.beginPath();
+            ctx.arc(px, py, pebbleRadius, 0, Math.PI * 2);
+            ctx.fill();
+        }
     }
-    ctx.stroke();
-  }
-  drawVerticalSeam(w * 0.25, w * 0.06);
-  drawVerticalSeam(w * 0.75, -w * 0.06);
-  drawVerticalSeam(w * 0.0, w * 0.05);
-  drawVerticalSeam(w * 1.0, -w * 0.05);
 
-  ctx.beginPath();
-  ctx.moveTo(0, h / 2);
-  ctx.lineTo(w, h / 2);
-  ctx.stroke();
+    // 3. Black Rubber Seams (Replacing the glowing orange ones)
+    ctx.strokeStyle = "#1a1a1a"; 
+    ctx.lineWidth = 12; // Slightly thicker for traditional seams
+    ctx.lineCap = "round";
 
-  function archSeam(cy, dir) {
-    ctx.beginPath();
-    for (let x = 0; x <= w; x += 4) {
-      const t = x / w;
-      const y = cy + Math.sin(t * Math.PI * 2) * (h * 0.05) * dir;
-      if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+    function drawVerticalSeam(offsetX, amplitude) {
+        ctx.beginPath();
+        for (let y = 0; y <= h; y += 4) {
+            const t = y / h;
+            const x = offsetX + Math.sin(t * Math.PI) * amplitude;
+            if (y === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
     }
+
+    drawVerticalSeam(w * 0.25, w * 0.06);
+    drawVerticalSeam(w * 0.75, -w * 0.06);
+    drawVerticalSeam(w * 0.0, w * 0.05);
+    drawVerticalSeam(w * 1.0, -w * 0.05);
+
+    ctx.beginPath();
+    ctx.moveTo(0, h / 2);
+    ctx.lineTo(w, h / 2);
     ctx.stroke();
-  }
-  archSeam(h * 0.25, 1);
-  archSeam(h * 0.75, -1);
 
-  ctx.shadowBlur = 0;
+    function archSeam(cy, dir) {
+        ctx.beginPath();
+        for (let x = 0; x <= w; x += 4) {
+            const t = x / w;
+            const y = cy + Math.sin(t * Math.PI * 2) * (h * 0.05) * dir;
+            if (x === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+    }
 
-  ctx.save();
-  ctx.textAlign = "center";
-  ctx.textBaseline = "middle";
-  const cx = w / 2, cy = h / 2;
+    archSeam(h * 0.25, 1);
+    archSeam(h * 0.75, -1);
 
-  ctx.font = "700 84px 'Space Grotesk', sans-serif";
-  ctx.fillStyle = "rgba(0,10,25,0.55)";
-  ctx.fillText("TECHLETICS", cx + 3, cy - 46 + 3);
-  ctx.fillStyle = "rgba(255,255,255,0.55)";
-  ctx.fillText("TECHLETICS", cx - 2, cy - 46 - 2);
-  ctx.fillStyle = "#eaf4ff";
-  ctx.fillText("TECHLETICS", cx, cy - 46);
+    // 4. Clean, High-Contrast Branding Text
+    ctx.save();
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    const cx = w / 2, cy = h / 2;
 
-  ctx.font = "500 34px 'Inter', sans-serif";
-  ctx.fillStyle = "rgba(0,10,25,0.5)";
-  ctx.fillText("Your Game, Upgraded", cx + 2, cy + 20 + 2);
-  ctx.fillStyle = "rgba(255,255,255,0.4)";
-  ctx.fillText("Your Game, Upgraded", cx - 1, cy + 20 - 1);
-  ctx.fillStyle = "#dfeeff";
-  ctx.fillText("Your Game, Upgraded", cx, cy + 20);
-  ctx.restore();
+    ctx.font = "700 84px 'Space Grotesk', sans-serif";
+    ctx.fillStyle = "#111111"; // Crisp black foil stamp effect
+    ctx.fillText("TECHLETICS", cx, cy - 46);
 
-  const colorTex = new THREE.CanvasTexture(canvas);
-  colorTex.colorSpace = THREE.SRGBColorSpace;
-  colorTex.wrapS = THREE.RepeatWrapping;
-  colorTex.anisotropy = 8;
+    ctx.font = "500 34px 'Inter', sans-serif";
+    ctx.fillStyle = "#222222";
+    ctx.fillText("Your Game, Upgraded", cx, cy + 20);
+    ctx.restore();
 
-  const bumpCanvas = document.createElement("canvas");
-  bumpCanvas.width = w; bumpCanvas.height = h;
-  const bctx = bumpCanvas.getContext("2d");
-  bctx.fillStyle = "#808080";
-  bctx.fillRect(0, 0, w, h);
-  bctx.drawImage(canvas, 0, 0);
-  bctx.globalCompositeOperation = "multiply";
-  bctx.fillStyle = "rgba(128,128,128,0.6)";
-  bctx.fillRect(0, 0, w, h);
-  const bumpTex = new THREE.CanvasTexture(bumpCanvas);
-  bumpTex.wrapS = THREE.RepeatWrapping;
+    // 5. Build Material Maps
+    const colorTex = new THREE.CanvasTexture(canvas);
+    colorTex.colorSpace = THREE.SRGBColorSpace;
+    colorTex.wrapS = THREE.RepeatWrapping;
+    colorTex.anisotropy = 8;
 
-  return { colorTex, bumpTex };
+    // The bump map uses this pattern to generate actual 3D texture depth
+    const bumpCanvas = document.createElement("canvas");
+    bumpCanvas.width = w;
+    bumpCanvas.height = h;
+    const bctx = bumpCanvas.getContext("2d");
+    bctx.fillStyle = "#808080";
+    bctx.fillRect(0, 0, w, h);
+    bctx.drawImage(canvas, 0, 0);
+    bctx.globalCompositeOperation = "multiply";
+    bctx.fillStyle = "rgba(128,128,128,0.5)";
+    bctx.fillRect(0, 0, w, h);
+
+    const bumpTex = new THREE.CanvasTexture(bumpCanvas);
+    bumpTex.wrapS = THREE.RepeatWrapping;
+
+    return { colorTex, bumpTex };
 }
 
 function initHeroScene(THREE, EffectComposer, RenderPass, UnrealBloomPass) {

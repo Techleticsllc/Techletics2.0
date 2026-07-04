@@ -156,7 +156,7 @@ function initHeroScene(THREE, EffectComposer, RenderPass, UnrealBloomPass) {
   scene.add(topLight);
 
   // Shrinks hero ball down to 1.75
-  const ballGeo = new THREE.SphereGeometry(1.75, 128, 128);
+  const ballGeo = new THREE.SphereGeometry(1.45, 128, 128);
   const ballMat = new THREE.MeshPhysicalMaterial({
     map: colorTex,
     bumpMap: bumpTex,

@@ -8,8 +8,7 @@ try {
   const { EffectComposer } = await import("three/addons/postprocessing/EffectComposer.js");
   const { RenderPass } = await import("three/addons/postprocessing/RenderPass.js");
   const { UnrealBloomPass } = await import("three/addons/postprocessing/UnrealBloomPass.js");
- initHeroScene(THREE, EffectComposer, RenderPass, UnrealBloomPass, 'hero-canvas');
-initHeroScene(THREE, EffectComposer, RenderPass, UnrealBloomPass, 'feature-canvas');
+  initHeroScene(THREE, EffectComposer, RenderPass, UnrealBloomPass);
 } catch (err) {
   console.warn("Techletics: 3D hero scene unavailable, showing CSS fallback.", err);
 }
@@ -121,9 +120,10 @@ function buildBasketballTextures(THREE) {
 }
 
 function initHeroScene(THREE, EffectComposer, RenderPass, UnrealBloomPass) {
- const canvas = document.getElementById(canvasId);
+  const canvas = document.getElementById("hero-canvas");
   if (!canvas) return;
 
+  // Expose textures instantly at top of loop initialization
   const { colorTex, bumpTex } = buildBasketballTextures(THREE);
   window.sharedBasketballTextures = { colorTex, bumpTex };
 
@@ -137,10 +137,6 @@ function initHeroScene(THREE, EffectComposer, RenderPass, UnrealBloomPass) {
   renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.1;
-
-  // Engineering Group Container
-  const engineeringGroup = new THREE.Group();
-  scene.add(engineeringGroup);
 
   const ambient = new THREE.AmbientLight(0x1e2a3a, 0.9);
   scene.add(ambient);
@@ -159,6 +155,7 @@ function initHeroScene(THREE, EffectComposer, RenderPass, UnrealBloomPass) {
   topLight.position.set(0, 8, 2);
   scene.add(topLight);
 
+  // Shrinks hero ball down to 1.75
   const ballGeo = new THREE.SphereGeometry(1.45, 128, 128);
   const ballMat = new THREE.MeshPhysicalMaterial({
     map: colorTex,
@@ -172,14 +169,14 @@ function initHeroScene(THREE, EffectComposer, RenderPass, UnrealBloomPass) {
   });
 
   const ball = new THREE.Mesh(ballGeo, ballMat);
-  engineeringGroup.add(ball);
+  scene.add(ball);
 
   const shadowGeo = new THREE.CircleGeometry(2.4, 64);
   const shadowMat = new THREE.MeshBasicMaterial({ color: 0x000000, transparent: true, opacity: 0.35 });
   const shadowMesh = new THREE.Mesh(shadowGeo, shadowMat);
   shadowMesh.rotation.x = -Math.PI / 2;
   shadowMesh.position.y = -2.6;
-  engineeringGroup.add(shadowMesh);
+  scene.add(shadowMesh);
 
   const rings = [];
   [2.8, 3.4, 4.1].forEach((r, i) => {
@@ -192,12 +189,9 @@ function initHeroScene(THREE, EffectComposer, RenderPass, UnrealBloomPass) {
     const ring = new THREE.Mesh(ringGeo, ringMat);
     ring.rotation.x = Math.PI / 2 + i * 0.4;
     ring.rotation.y = i * 0.7;
-    engineeringGroup.add(ring);
+    scene.add(ring);
     rings.push(ring);
   });
-
-  // Shift the engineering assembly to the left
-  engineeringGroup.position.set(-2.5, 0, 0);
 
   const particleCount = 500;
   const particleGeo = new THREE.BufferGeometry();

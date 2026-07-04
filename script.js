@@ -27,9 +27,12 @@ function buildBasketballTextures(THREE) {
     const ctx = canvas.getContext("2d");
     const w = canvas.width, h = canvas.height;
 
-    // 1. Classic Leather Base Color
-    ctx.fillStyle = "#b04a1d"; // Traditional deep basketball orange/brown
-    ctx.fillRect(0, 0, w, h);
+   // 1. Change the base color to a deep, premium dark blue leather
+ctx.fillStyle = "#0d1b2a"; 
+ctx.fillRect(0, 0, w, h);
+
+// ... keep your loops the same, but update the pebble highlights down inside the loop:
+ctx.fillStyle = "rgba(30, 144, 255, 0.08)"; // Subtle bright blue mist for the leather pebble tops
 
     // 2. Heavy Leather Pebbling / Grain
     // Instead of random dots, we create a dense, structured pebbled pattern

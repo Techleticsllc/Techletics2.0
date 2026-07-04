@@ -162,9 +162,9 @@ scene.add(topLight);
     map: colorTex,
     bumpMap: bumpTex,
     bumpScale: 0.035,
-    roughness: 0.55,
+    roughness: 0.85,
     metalness: 0.05,
-    clearcoat: 0.35,
+    clearcoat: 0.0,
     clearcoatRoughness: 0.6,
     envMapIntensity: 1.1,
   });

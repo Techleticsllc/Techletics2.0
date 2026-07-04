@@ -143,7 +143,6 @@ function initHeroScene(THREE, EffectComposer, RenderPass, UnrealBloomPass) {
 
   const keyLight = new THREE.SpotLight(0x8fc6ff, 220, 30, Math.PI / 5, 0.4, 1);
   keyLight.position.set(-5, 5, 6);
-  scene.add(keyLight);
 
   const rimLight = new THREE.PointLight(0xff6a00, 60, 20, 2);
   rimLight.position.set(4, -2, -3);

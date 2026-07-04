@@ -27,8 +27,8 @@ function buildBasketballTextures(THREE) {
     const ctx = canvas.getContext("2d");
     const w = canvas.width, h = canvas.height;
 
-    // 1. Premium Midnight Blue Base Color
-    ctx.fillStyle = "#0d1b2a"; 
+    // 1. Brighter, More Vibrant Blue Base Color
+    ctx.fillStyle = "#162a45"; 
     ctx.fillRect(0, 0, w, h);
 
     // 2. Heavy Leather Pebbling / Grain
@@ -43,21 +43,21 @@ function buildBasketballTextures(THREE) {
             const py = y + (Math.random() - 0.5) * 0.8;
             
             // Dark pocket underneath the pebble
-            ctx.fillStyle = "rgba(5, 10, 20, 0.4)";
+            ctx.fillStyle = "rgba(5, 10, 20, 0.45)";
             ctx.beginPath();
             ctx.arc(px, py + 0.5, pebbleRadius, 0, Math.PI * 2);
             ctx.fill();
 
-            // Clear blue highlight on top of the pebble
-            ctx.fillStyle = "rgba(30, 144, 255, 0.12)"; 
+            // Vibrant blue highlight on top of the pebble to emphasize the brighter base
+            ctx.fillStyle = "rgba(42, 117, 212, 0.18)"; 
             ctx.beginPath();
             ctx.arc(px, py, pebbleRadius, 0, Math.PI * 2);
             ctx.fill();
         }
     }
 
-    // 3. Crisp Black Rubber Seams
-    ctx.strokeStyle = "#1a1a1a"; 
+    // 3. Orange Rubber Seams (Stripes)
+    ctx.strokeStyle = "#ff6a00"; 
     ctx.lineWidth = 12; 
     ctx.lineCap = "round";
 
@@ -96,18 +96,18 @@ function buildBasketballTextures(THREE) {
     archSeam(h * 0.25, 1);
     archSeam(h * 0.75, -1);
 
-    // 4. Branding Text
+    // 4. Orange Branding Text
     ctx.save();
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
     const cx = w / 2, cy = h / 2;
 
     ctx.font = "700 84px 'Space Grotesk', sans-serif";
-    ctx.fillStyle = "#111111"; 
+    ctx.fillStyle = "#ff6a00"; // Changed to matching vibrant orange
     ctx.fillText("TECHLETICS", cx, cy - 46);
 
     ctx.font = "500 34px 'Inter', sans-serif";
-    ctx.fillStyle = "#222222";
+    ctx.fillStyle = "#ff8533"; // Slightly softer orange tint for the tagline readability
     ctx.fillText("Your Game, Upgraded", cx, cy + 20);
     ctx.restore();
 

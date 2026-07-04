@@ -173,32 +173,7 @@
 
   <div class="tech-wrap">
     <div class="tech-visual">
-  <canvas id="engineeringCanvas" style="width: 100%; height: 100%; max-width: 400px; max-height: 400px; margin: auto; display: block;"></canvas>
-</div>>
-      <div class="tech-ball-core">
-        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <radialGradient id="ballShade" cx="35%" cy="30%" r="75%">
-              <stop offset="0%" stop-color="#6fb8ff"/>
-              <stop offset="45%" stop-color="#1E90FF"/>
-              <stop offset="100%" stop-color="#0a3d78"/>
-            </radialGradient>
-            <radialGradient id="ballShine" cx="32%" cy="26%" r="30%">
-              <stop offset="0%" stop-color="#ffffff" stop-opacity="0.55"/>
-              <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
-            </radialGradient>
-          </defs>
-          <circle cx="100" cy="100" r="96" fill="url(#ballShade)"/>
-          <g fill="none" stroke="#FF6A00" stroke-width="4.5" stroke-linecap="round" opacity="0.92">
-            <path d="M100,4 C60,40 60,160 100,196"/>
-            <path d="M100,4 C140,40 140,160 100,196"/>
-            <path d="M4,100 L196,100"/>
-            <path d="M14,58 C60,80 140,80 186,58"/>
-            <path d="M14,142 C60,120 140,120 186,142"/>
-          </g>
-          <circle cx="100" cy="100" r="96" fill="url(#ballShine)"/>
-        </svg>
-      </div>
+      <canvas id="engineeringCanvas" style="width: 100%; height: 100%; max-width: 400px; max-height: 400px; margin: auto; display: block;"></canvas>
       <div class="tech-orbit orbit-1"></div>
       <div class="tech-orbit orbit-2"></div>
       <div class="tech-orbit orbit-3"></div>
@@ -471,9 +446,6 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<!-- interactions.js is a classic script: it runs independently of the 3D hero,
-     so navbar, reveals, counters, tech list, phone tilt, carousel and CTA
-     particles all work even if the WebGL/Three.js module below fails to load. -->
 <script src="interactions.js"></script>
 <script type="module" src="script.js"></script>
 </body>

@@ -291,19 +291,15 @@
   }
 
   /* ============ Section 2 (Engineering) 3D Ball Sync ============ */
-  var targetSectionCanvas = document.getElementById("engineeringCanvas"); // Target your specific Section 2 canvas element
+  var targetSectionCanvas = document.getElementById("engineeringCanvas");
   if (targetSectionCanvas && typeof THREE !== "undefined") {
     var renderer2 = new THREE.WebGLRenderer({ canvas: targetSectionCanvas, alpha: true, antialias: true });
     var scene2 = new THREE.Scene();
     
-    // Set customized size for Section 2 (1.2 Radius instead of Hero's 1.75)
+    // Independent Section 2 Compact Size (1.2 Radius)
     var ballGeo2 = new THREE.SphereGeometry(1.2, 64, 64);
     
-    // Fetch shared bright blue skin & orange striped assets safely from the window instance
-    var textures = window.sharedBasketballTextures || {};
     var ballMat2 = new THREE.MeshPhysicalMaterial({
-      map: textures.colorTex || null,
-      bumpMap: textures.bumpTex || null,
       bumpScale: 0.05,
       roughness: 0.85,
       metalness: 0.05,
@@ -315,7 +311,6 @@
     var ballMesh2 = new THREE.Mesh(ballGeo2, ballMat2);
     scene2.add(ballMesh2);
 
-    // Basic layout lighting configuration for Section 2 context
     var lightAmbient = new THREE.AmbientLight(0xffffff, 0.6);
     var lightDirect = new THREE.DirectionalLight(0xffffff, 0.8);
     lightDirect.position.set(5, 5, 3);
@@ -326,13 +321,19 @@
 
     function renderSection2() {
       requestAnimationFrame(renderSection2);
-      // Auto rotational rotation to display the orange text branding clearly down page
+      
+      // Automatic link-up check loop execution
+      if (!ballMat2.map && window.sharedBasketballTextures) {
+        ballMat2.map = window.sharedBasketballTextures.colorTex;
+        ballMat2.bumpMap = window.sharedBasketballTextures.bumpTex;
+        ballMat2.needsUpdate = true;
+      }
+
       ballMesh2.rotation.y += 0.004;
       ballMesh2.rotation.x = 0.15;
       renderer2.render(scene2, camera2);
     }
 
-    // Dynamic resize handler for keeping Section 2 responsive
     window.addEventListener("resize", function () {
       var w2 = targetSectionCanvas.clientWidth;
       var h2 = targetSectionCanvas.clientHeight;
@@ -341,7 +342,6 @@
       renderer2.setSize(w2, h2, false);
     });
 
-    // Fire off initialization sizing and run loop execution
     renderer2.setSize(targetSectionCanvas.clientWidth, targetSectionCanvas.clientHeight, false);
     renderSection2();
   }

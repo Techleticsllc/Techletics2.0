@@ -267,7 +267,6 @@ scene.add(topLight);
 
     particles.rotation.y = t * 0.02;
 
-    keyLight.position.x = -5 + Math.sin(t * 0.3) * 1.2;
     rimLight.position.x = 4 + Math.cos(t * 0.25) * 1.5;
 
     composer.render();
